@@ -1,7 +1,12 @@
 import "./App.css";
+import { QuoteInterface } from "./components/QuoteInterface";
 
 function App() {
-  return <>Hello llamas</>;
+  return (
+    <>
+      <QuoteInterface />
+    </>
+  );
 }
 
 export default App;

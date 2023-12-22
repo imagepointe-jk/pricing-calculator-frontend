@@ -1,0 +1,17 @@
+body {
+  width: 320px;
+  font-size: 18px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+
+label {
+  display: block;
+}

@@ -1,0 +1,21 @@
+.main {
+  background-color: lightgray;
+  border-radius: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 10px;
+  padding: 10px;
+  justify-items: end;
+}
+
+.grid input {
+  width: 30px;
+  padding: 5px;
+}
+
+.grid label {
+  padding-right: 17px;
+}
