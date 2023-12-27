@@ -16,6 +16,7 @@ export function GarmentLocationSelector({
       rightChest,
       rightSleeve,
     },
+    designType,
   } = state;
   function toggleLocationState(location: GarmentLocation) {
     const currentLocationState = parseLocationState(location);
@@ -53,23 +54,30 @@ export function GarmentLocationSelector({
     }
   }
 
+  const showFullFront = designType !== "Embroidery";
+  const showFullBack = designType !== "Embroidery";
+
   return (
     <div className={styles["main"]}>
       <img src="/garment.png" alt="garment" />
-      <button
-        className={`${styles["location-button"]} ${
-          fullBack ? styles["selected"] : ""
-        }`}
-        id="full-back-button"
-        onClick={() => toggleLocationState("Full Back")}
-      ></button>
-      <button
-        className={`${styles["location-button"]} ${
-          fullFront ? styles["selected"] : ""
-        }`}
-        id="full-front-button"
-        onClick={() => toggleLocationState("Full Front")}
-      ></button>
+      {showFullBack && (
+        <button
+          className={`${styles["location-button"]} ${
+            fullBack ? styles["selected"] : ""
+          }`}
+          id="full-back-button"
+          onClick={() => toggleLocationState("Full Back")}
+        ></button>
+      )}
+      {showFullFront && (
+        <button
+          className={`${styles["location-button"]} ${
+            fullFront ? styles["selected"] : ""
+          }`}
+          id="full-front-button"
+          onClick={() => toggleLocationState("Full Front")}
+        ></button>
+      )}
       <button
         className={`${styles["location-button"]} ${
           leftChest ? styles["selected"] : ""

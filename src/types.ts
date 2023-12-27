@@ -5,3 +5,5 @@ export type GarmentLocation =
   | "Full Back"
   | "Left Sleeve"
   | "Right Sleeve";
+
+export type EmbroideryStitchCount = "5k" | "10k";

@@ -5,6 +5,8 @@ import { GarmentLocationSelector } from "./GarmentLocationSelector";
 import { QuantityFields } from "./QuantityFields";
 import styles from "./styles/QuoteInterface.module.css";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
+import { EmbroideryStitchCount } from "../types";
+import { EmbroideryOptions } from "./EmbroideryOptions";
 
 type QuoteRequestState = {
   designType: DesignType;
@@ -32,6 +34,12 @@ type QuoteRequestState = {
     fullBackColors: number;
     leftSleeveColors: number;
     rightSleeveColors: number;
+  };
+  embroideryOptions: {
+    leftChestStitches: EmbroideryStitchCount;
+    rightChestStitches: EmbroideryStitchCount;
+    leftSleeveStitches: EmbroideryStitchCount;
+    rightSleeveStitches: EmbroideryStitchCount;
   };
 };
 
@@ -67,6 +75,12 @@ const initialState: QuoteRequestState = {
     rightChestColors: 1,
     rightSleeveColors: 1,
   },
+  embroideryOptions: {
+    leftChestStitches: "5k",
+    rightChestStitches: "5k",
+    leftSleeveStitches: "5k",
+    rightSleeveStitches: "5k",
+  },
 };
 
 export function QuoteInterface() {
@@ -83,6 +97,9 @@ export function QuoteInterface() {
       <QuantityFields state={requestState} setState={setRequestState} />
       {designType === "Screen Print" && (
         <ScreenPrintOptions state={requestState} setState={setRequestState} />
+      )}
+      {designType === "Embroidery" && (
+        <EmbroideryOptions state={requestState} setState={setRequestState} />
       )}
       <div>
         <div>Comments</div>

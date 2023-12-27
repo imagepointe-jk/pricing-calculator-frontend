@@ -4,7 +4,15 @@ import styles from "./styles/QuoteInterface.module.css";
 
 export function DesignTypes({ state, setState }: QuoteRequestStateProps) {
   function setDesignType(newType: DesignType) {
-    setState({ ...state, designType: newType });
+    const newState = { ...state };
+    newState.designType = newType;
+
+    if (newType === "Embroidery") {
+      newState.locations.fullBack = false;
+      newState.locations.fullFront = false;
+    }
+
+    setState(newState);
   }
 
   return (
