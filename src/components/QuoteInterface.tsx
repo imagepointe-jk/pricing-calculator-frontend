@@ -25,6 +25,14 @@ type QuoteRequestState = {
     leftSleeve: boolean;
     rightSleeve: boolean;
   };
+  screenPrintOptions: {
+    leftChestColors: number;
+    rightChestColors: number;
+    fullFrontColors: number;
+    fullBackColors: number;
+    leftSleeveColors: number;
+    rightSleeveColors: number;
+  };
 };
 
 export type QuoteRequestStateProps = {
@@ -50,6 +58,14 @@ const initialState: QuoteRequestState = {
     leftSleeve: false,
     rightChest: false,
     rightSleeve: false,
+  },
+  screenPrintOptions: {
+    fullBackColors: 1,
+    fullFrontColors: 1,
+    leftChestColors: 1,
+    leftSleeveColors: 1,
+    rightChestColors: 1,
+    rightSleeveColors: 1,
   },
 };
 

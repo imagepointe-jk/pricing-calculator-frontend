@@ -5,10 +5,6 @@ export function ScreenPrintOptions({
   state,
   setState,
 }: QuoteRequestStateProps) {
-  function changeLocationColorCount(location: GarmentLocation, value: number) {
-    const newState = { ...state };
-  }
-
   const {
     locations: {
       fullBack,
@@ -18,7 +14,32 @@ export function ScreenPrintOptions({
       rightChest,
       rightSleeve,
     },
+    screenPrintOptions: {
+      fullBackColors,
+      fullFrontColors,
+      leftChestColors,
+      leftSleeveColors,
+      rightChestColors,
+      rightSleeveColors,
+    },
   } = state;
+
+  function changeLocationColorCount(location: GarmentLocation, value: number) {
+    const newState = { ...state };
+
+    if (location === "Full Back")
+      newState.screenPrintOptions.fullBackColors = value;
+    if (location === "Full Front")
+      newState.screenPrintOptions.fullFrontColors = value;
+    if (location === "Left Chest")
+      newState.screenPrintOptions.leftChestColors = value;
+    if (location === "Right Chest")
+      newState.screenPrintOptions.rightChestColors = value;
+    if (location === "Right Sleeve")
+      newState.screenPrintOptions.rightSleeveColors = value;
+
+    setState(newState);
+  }
 
   const noLocations =
     !fullBack &&
@@ -34,36 +55,42 @@ export function ScreenPrintOptions({
       {leftChest && (
         <ScreenPrintColorCountOption
           location="Left Chest"
+          selected={leftChestColors}
           changeFn={changeLocationColorCount}
         />
       )}
       {rightChest && (
         <ScreenPrintColorCountOption
           location="Right Chest"
+          selected={rightChestColors}
           changeFn={changeLocationColorCount}
         />
       )}
       {fullFront && (
         <ScreenPrintColorCountOption
           location="Full Front"
+          selected={fullFrontColors}
           changeFn={changeLocationColorCount}
         />
       )}
       {fullBack && (
         <ScreenPrintColorCountOption
           location="Full Back"
+          selected={fullBackColors}
           changeFn={changeLocationColorCount}
         />
       )}
       {leftSleeve && (
         <ScreenPrintColorCountOption
           location="Left Sleeve"
+          selected={leftSleeveColors}
           changeFn={changeLocationColorCount}
         />
       )}
       {rightSleeve && (
         <ScreenPrintColorCountOption
           location="Right Sleeve"
+          selected={rightSleeveColors}
           changeFn={changeLocationColorCount}
         />
       )}
@@ -73,12 +100,14 @@ export function ScreenPrintOptions({
 
 type ScreenPrintColorCountOptionProps = {
   location: GarmentLocation;
+  selected: number;
   changeFn: (location: GarmentLocation, value: number) => void;
 };
 
 function ScreenPrintColorCountOption({
   location,
   changeFn,
+  selected,
 }: ScreenPrintColorCountOptionProps) {
   const name = `screen-print-${location}`;
   return (
@@ -90,7 +119,7 @@ function ScreenPrintColorCountOption({
         onChange={(e) => changeFn(location, +e.target.value)}
       >
         {[1, 2, 3, 4].map((n) => (
-          <option>{n}</option>
+          <option selected={selected === n}>{n}</option>
         ))}
       </select>{" "}
     </label>
