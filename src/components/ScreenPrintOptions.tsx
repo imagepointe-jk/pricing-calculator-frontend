@@ -9,32 +9,64 @@ export function ScreenPrintOptions({
     const newState = { ...state };
   }
 
+  const {
+    locations: {
+      fullBack,
+      fullFront,
+      leftChest,
+      leftSleeve,
+      rightChest,
+      rightSleeve,
+    },
+  } = state;
+
+  const noLocations =
+    !fullBack &&
+    !fullFront &&
+    !leftChest &&
+    !leftSleeve &&
+    !rightChest &&
+    !rightSleeve;
+
   return (
     <div>
-      <ScreenPrintColorCountOption
-        location="Left Chest"
-        changeFn={changeLocationColorCount}
-      />
-      <ScreenPrintColorCountOption
-        location="Right Chest"
-        changeFn={changeLocationColorCount}
-      />
-      <ScreenPrintColorCountOption
-        location="Full Front"
-        changeFn={changeLocationColorCount}
-      />
-      <ScreenPrintColorCountOption
-        location="Full Back"
-        changeFn={changeLocationColorCount}
-      />
-      <ScreenPrintColorCountOption
-        location="Left Sleeve"
-        changeFn={changeLocationColorCount}
-      />
-      <ScreenPrintColorCountOption
-        location="Right Sleeve"
-        changeFn={changeLocationColorCount}
-      />
+      {noLocations && <h3>Please select at least one location.</h3>}
+      {leftChest && (
+        <ScreenPrintColorCountOption
+          location="Left Chest"
+          changeFn={changeLocationColorCount}
+        />
+      )}
+      {rightChest && (
+        <ScreenPrintColorCountOption
+          location="Right Chest"
+          changeFn={changeLocationColorCount}
+        />
+      )}
+      {fullFront && (
+        <ScreenPrintColorCountOption
+          location="Full Front"
+          changeFn={changeLocationColorCount}
+        />
+      )}
+      {fullBack && (
+        <ScreenPrintColorCountOption
+          location="Full Back"
+          changeFn={changeLocationColorCount}
+        />
+      )}
+      {leftSleeve && (
+        <ScreenPrintColorCountOption
+          location="Left Sleeve"
+          changeFn={changeLocationColorCount}
+        />
+      )}
+      {rightSleeve && (
+        <ScreenPrintColorCountOption
+          location="Right Sleeve"
+          changeFn={changeLocationColorCount}
+        />
+      )}
     </div>
   );
 }
