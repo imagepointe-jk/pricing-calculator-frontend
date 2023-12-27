@@ -100,7 +100,7 @@ export function QuoteInterface() {
   function updateState(newState: QuoteRequestState) {
     setRequestState(newState);
     window.parent.postMessage(
-      { type: "pricing-calculator-state-change", state: requestState },
+      { type: "pricing-calculator-state-change", state: newState },
       "*"
     );
   }
