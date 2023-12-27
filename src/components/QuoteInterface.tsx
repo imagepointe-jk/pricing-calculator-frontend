@@ -97,25 +97,30 @@ export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
   const { designType } = requestState;
 
+  function updateState(newState: QuoteRequestState) {
+    setRequestState(newState);
+    window.parent.postMessage(
+      { type: "pricing-calculator-state-change", state: requestState },
+      "*"
+    );
+  }
+
   return (
     <div className={styles["main"]}>
-      <GarmentLocationSelector
-        state={requestState}
-        setState={setRequestState}
-      />
-      <DesignTypes state={requestState} setState={setRequestState} />
-      <QuantityFields state={requestState} setState={setRequestState} />
+      <GarmentLocationSelector state={requestState} setState={updateState} />
+      <DesignTypes state={requestState} setState={updateState} />
+      <QuantityFields state={requestState} setState={updateState} />
       {designType === "Screen Print" && (
-        <ScreenPrintOptions state={requestState} setState={setRequestState} />
+        <ScreenPrintOptions state={requestState} setState={updateState} />
       )}
       {designType === "Embroidery" && (
-        <EmbroideryOptions state={requestState} setState={setRequestState} />
+        <EmbroideryOptions state={requestState} setState={updateState} />
       )}
       {designType === "DTF" && (
-        <DTFMessage state={requestState} setState={setRequestState} />
+        <DTFMessage state={requestState} setState={updateState} />
       )}
       {designType === "Dye Sublimation" && (
-        <DyeSubOptions state={requestState} setState={setRequestState} />
+        <DyeSubOptions state={requestState} setState={updateState} />
       )}
       <div>
         <div>Comments</div>
