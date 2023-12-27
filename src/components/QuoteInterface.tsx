@@ -65,7 +65,7 @@ export function QuoteInterface() {
       />
       <DesignTypes state={requestState} setState={setRequestState} />
       <QuantityFields state={requestState} setState={setRequestState} />
-      {designType && (
+      {designType === "Screen Print" && (
         <ScreenPrintOptions state={requestState} setState={setRequestState} />
       )}
       <div>

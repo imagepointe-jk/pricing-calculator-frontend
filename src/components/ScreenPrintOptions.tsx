@@ -1,12 +1,5 @@
+import { GarmentLocation } from "../types";
 import { QuoteRequestStateProps } from "./QuoteInterface";
-
-type GarmentLocation =
-  | "Left Chest"
-  | "Right Chest"
-  | "Full Front"
-  | "Full Back"
-  | "Left Sleeve"
-  | "Right Sleeve";
 
 export function ScreenPrintOptions({
   state,

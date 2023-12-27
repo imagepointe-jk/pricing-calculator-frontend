@@ -1,0 +1,35 @@
+#left-chest-button {
+  left: 96px;
+  top: 45px;
+}
+
+#right-chest-button {
+  left: 44px;
+  top: 45px;
+}
+
+#left-sleeve-button {
+  left: 137px;
+  top: 35px;
+}
+
+#right-sleeve-button {
+  left: 4px;
+  top: 35px;
+}
+
+#full-front-button {
+  left: 63px;
+  top: 76px;
+}
+
+#full-back-button {
+  left: 223px;
+  top: 60px;
+}
+
+#full-front-button,
+#full-back-button {
+  width: 30px;
+  height: 40px;
+}

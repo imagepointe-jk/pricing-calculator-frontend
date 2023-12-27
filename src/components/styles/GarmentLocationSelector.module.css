@@ -1,0 +1,13 @@
+.main {
+  position: relative;
+}
+
+.location-button {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+}
+
+.selected {
+  background-color: red;
+}
