@@ -7,6 +7,7 @@ import styles from "./styles/QuoteInterface.module.css";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
 import { EmbroideryStitchCount } from "../types";
 import { EmbroideryOptions } from "./EmbroideryOptions";
+import { DTFMessage } from "./DTFMessage";
 
 type QuoteRequestState = {
   designType: DesignType;
@@ -100,6 +101,9 @@ export function QuoteInterface() {
       )}
       {designType === "Embroidery" && (
         <EmbroideryOptions state={requestState} setState={setRequestState} />
+      )}
+      {designType === "DTF" && (
+        <DTFMessage state={requestState} setState={setRequestState} />
       )}
       <div>
         <div>Comments</div>
