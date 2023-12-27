@@ -8,6 +8,7 @@ import { ScreenPrintOptions } from "./ScreenPrintOptions";
 import { EmbroideryStitchCount } from "../types";
 import { EmbroideryOptions } from "./EmbroideryOptions";
 import { DTFMessage } from "./DTFMessage";
+import { DyeSubOptions } from "./DyeSubOptions";
 
 type QuoteRequestState = {
   designType: DesignType;
@@ -41,6 +42,10 @@ type QuoteRequestState = {
     rightChestStitches: EmbroideryStitchCount;
     leftSleeveStitches: EmbroideryStitchCount;
     rightSleeveStitches: EmbroideryStitchCount;
+  };
+  dyeSubOptions: {
+    pouch: boolean;
+    hood: boolean;
   };
 };
 
@@ -82,6 +87,10 @@ const initialState: QuoteRequestState = {
     leftSleeveStitches: "5k",
     rightSleeveStitches: "5k",
   },
+  dyeSubOptions: {
+    pouch: false,
+    hood: true,
+  },
 };
 
 export function QuoteInterface() {
@@ -104,6 +113,9 @@ export function QuoteInterface() {
       )}
       {designType === "DTF" && (
         <DTFMessage state={requestState} setState={setRequestState} />
+      )}
+      {designType === "Dye Sublimation" && (
+        <DyeSubOptions state={requestState} setState={setRequestState} />
       )}
       <div>
         <div>Comments</div>

@@ -54,8 +54,14 @@ export function GarmentLocationSelector({
     }
   }
 
-  const showFullFront = designType !== "Embroidery";
-  const showFullBack = designType !== "Embroidery";
+  const showFullFront =
+    designType !== "Embroidery" && designType !== "Dye Sublimation";
+  const showFullBack =
+    designType !== "Embroidery" && designType !== "Dye Sublimation";
+  const showLeftSleeve = designType !== "Dye Sublimation";
+  const showRightSleeve = designType !== "Dye Sublimation";
+  const showLeftChest = designType !== "Dye Sublimation";
+  const showRightChest = designType !== "Dye Sublimation";
 
   return (
     <div className={styles["main"]}>
@@ -78,34 +84,42 @@ export function GarmentLocationSelector({
           onClick={() => toggleLocationState("Full Front")}
         ></button>
       )}
-      <button
-        className={`${styles["location-button"]} ${
-          leftChest ? styles["selected"] : ""
-        }`}
-        id="left-chest-button"
-        onClick={() => toggleLocationState("Left Chest")}
-      ></button>
-      <button
-        className={`${styles["location-button"]} ${
-          rightChest ? styles["selected"] : ""
-        }`}
-        id="right-chest-button"
-        onClick={() => toggleLocationState("Right Chest")}
-      ></button>
-      <button
-        className={`${styles["location-button"]} ${
-          leftSleeve ? styles["selected"] : ""
-        }`}
-        id="left-sleeve-button"
-        onClick={() => toggleLocationState("Left Sleeve")}
-      ></button>
-      <button
-        className={`${styles["location-button"]} ${
-          rightSleeve ? styles["selected"] : ""
-        }`}
-        id="right-sleeve-button"
-        onClick={() => toggleLocationState("Right Sleeve")}
-      ></button>
+      {showLeftChest && (
+        <button
+          className={`${styles["location-button"]} ${
+            leftChest ? styles["selected"] : ""
+          }`}
+          id="left-chest-button"
+          onClick={() => toggleLocationState("Left Chest")}
+        ></button>
+      )}
+      {showRightChest && (
+        <button
+          className={`${styles["location-button"]} ${
+            rightChest ? styles["selected"] : ""
+          }`}
+          id="right-chest-button"
+          onClick={() => toggleLocationState("Right Chest")}
+        ></button>
+      )}
+      {showLeftSleeve && (
+        <button
+          className={`${styles["location-button"]} ${
+            leftSleeve ? styles["selected"] : ""
+          }`}
+          id="left-sleeve-button"
+          onClick={() => toggleLocationState("Left Sleeve")}
+        ></button>
+      )}
+      {showRightSleeve && (
+        <button
+          className={`${styles["location-button"]} ${
+            rightSleeve ? styles["selected"] : ""
+          }`}
+          id="right-sleeve-button"
+          onClick={() => toggleLocationState("Right Sleeve")}
+        ></button>
+      )}
     </div>
   );
 }
