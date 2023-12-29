@@ -1,3 +1,15 @@
+import { z } from "zod";
+
+export const quoteEstimateSchema = z.object({
+  Small: z.number(),
+  Medium: z.number(),
+  Large: z.number(),
+  XL: z.number(),
+  "2XL": z.number(),
+  "3XL": z.number(),
+  "4XL": z.number(),
+});
+
 export type GarmentLocation =
   | "Left Chest"
   | "Right Chest"
@@ -35,3 +47,5 @@ export type ProductPageFieldValues = {
   dyeSubHood?: string;
   comments?: string;
 };
+
+export type QuoteEstimate = z.infer<typeof quoteEstimateSchema>;

@@ -5,13 +5,16 @@ import {
   ProductSpecificData,
   QuoteRequest,
 } from "../sharedTypes";
-import { ProductPageFieldValues } from "../types";
+import { ProductPageFieldValues, QuoteEstimate } from "../types";
 import {
   boolToYesNo,
   buildQuantitiesBySizeFromState,
   buildRequestDetailsFromState,
 } from "../utility";
-import { parseProductDataResponse } from "../validations";
+import {
+  parseProductDataResponse,
+  parseQuoteEstimateResponse,
+} from "../validations";
 import { DTFMessage } from "./DTFMessage";
 import { DesignTypes } from "./DesignTypes";
 import { DyeSubOptions } from "./DyeSubOptions";
@@ -21,6 +24,7 @@ import { QuantityFields } from "./QuantityFields";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
 import styles from "./styles/QuoteInterface.module.css";
 import { getQuoteRequestEstimate } from "../fetch";
+import { EstimateArea } from "./EstimateArea";
 
 export type QuoteRequestState = {
   designType: DesignType;
@@ -112,6 +116,10 @@ export function QuoteInterface() {
   const [productData, setProductData] = useState(
     null as ProductSpecificData | null
   );
+  const [quoteEstimate, setQuoteEstimate] = useState(
+    null as QuoteEstimate | null
+  );
+  const [quoteEstimateLoading, setQuoteEstimateLoading] = useState(false);
   const { designType, comments } = requestState;
 
   function buildNewFieldValues(
@@ -247,14 +255,26 @@ export function QuoteInterface() {
     async function getEstimate() {
       if (!productData) return;
 
-      const request: QuoteRequest = {
-        details: buildRequestDetailsFromState(requestState),
-        productSpecificData: productData,
-        quantitiesBySize: buildQuantitiesBySizeFromState(requestState),
-      };
-      const response = await getQuoteRequestEstimate(request);
-      const json = await response.json();
-      console.log(json);
+      try {
+        setQuoteEstimate(null);
+        setQuoteEstimateLoading(true);
+
+        const request: QuoteRequest = {
+          details: buildRequestDetailsFromState(requestState),
+          productSpecificData: productData,
+          quantitiesBySize: buildQuantitiesBySizeFromState(requestState),
+        };
+
+        const response = await getQuoteRequestEstimate(request);
+        const json = await response.json();
+        const parsed = parseQuoteEstimateResponse(json);
+
+        setQuoteEstimate(parsed);
+        setQuoteEstimateLoading(false);
+      } catch (error) {
+        setQuoteEstimateLoading(false);
+        console.error("Error fetching quote estimate", error);
+      }
     }
     getEstimate();
   }, [requestState]);
@@ -289,6 +309,10 @@ export function QuoteInterface() {
           }
         ></textarea>
       </div>
+      <EstimateArea
+        quoteEstimate={quoteEstimate}
+        loading={quoteEstimateLoading}
+      />
     </div>
   );
 }
