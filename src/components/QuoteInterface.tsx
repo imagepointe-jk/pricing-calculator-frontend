@@ -5,10 +5,11 @@ import { GarmentLocationSelector } from "./GarmentLocationSelector";
 import { QuantityFields } from "./QuantityFields";
 import styles from "./styles/QuoteInterface.module.css";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
-import { EmbroideryStitchCount } from "../types";
+import { EmbroideryStitchCount, ProductPageFieldValues } from "../types";
 import { EmbroideryOptions } from "./EmbroideryOptions";
 import { DTFMessage } from "./DTFMessage";
 import { DyeSubOptions } from "./DyeSubOptions";
+import { boolToYesNo } from "../utility";
 
 type QuoteRequestState = {
   designType: DesignType;
@@ -97,10 +98,104 @@ export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
   const { designType } = requestState;
 
+  function buildNewFieldValues(
+    newState: QuoteRequestState
+  ): ProductPageFieldValues {
+    const {
+      quantities,
+      designType,
+      locations: {
+        fullBack,
+        fullFront,
+        leftChest,
+        leftSleeve,
+        rightChest,
+        rightSleeve,
+      },
+      screenPrintOptions: {
+        fullBackColors,
+        fullFrontColors,
+        leftChestColors,
+        leftSleeveColors,
+        rightChestColors,
+        rightSleeveColors,
+      },
+      embroideryOptions: {
+        leftChestStitches,
+        leftSleeveStitches,
+        rightChestStitches,
+        rightSleeveStitches,
+      },
+      dyeSubOptions: { hood, pouch },
+    } = newState;
+    let newValues: ProductPageFieldValues = {
+      designType,
+      quantitySmall: quantities.small,
+      quantityMedium: quantities.medium,
+      quantityLarge: quantities.large,
+      quantityXL: quantities.xl,
+      quantity2XL: quantities["2xl"],
+      quantity3XL: quantities["3xl"],
+      quantity4XL: quantities["4xl"],
+    };
+
+    if (
+      designType === "Screen Print" ||
+      designType === "DTF" ||
+      designType === "Embroidery"
+    ) {
+      newValues = {
+        ...newValues,
+        fullBack: boolToYesNo(fullBack),
+        fullFront: boolToYesNo(fullFront),
+        leftChest: boolToYesNo(leftChest),
+        rightChest: boolToYesNo(rightChest),
+        leftSleeve: boolToYesNo(leftSleeve),
+        rightSleeve: boolToYesNo(rightSleeve),
+      };
+    }
+
+    if (designType === "Screen Print") {
+      newValues = {
+        ...newValues,
+        fullBackColorCount: fullBackColors,
+        fullFrontColorCount: fullFrontColors,
+        leftChestColorCount: leftChestColors,
+        rightChestColorCount: rightChestColors,
+        leftSleeveColorCount: leftSleeveColors,
+        rightSleeveColorCount: rightSleeveColors,
+      };
+    }
+
+    if (designType === "Embroidery") {
+      newValues = {
+        ...newValues,
+        leftChestStitchCount: leftChestStitches,
+        rightChestStitchCount: rightChestStitches,
+        leftSleeveStitchCount: leftSleeveStitches,
+        rightSleeveStitchCount: rightSleeveStitches,
+      };
+    }
+
+    if (designType === "Dye Sublimation") {
+      newValues = {
+        ...newValues,
+        dyeSubHood: hood,
+        dyeSubPouch: pouch,
+      };
+    }
+
+    return newValues;
+  }
+
   function updateState(newState: QuoteRequestState) {
     setRequestState(newState);
+    const newFieldValues = buildNewFieldValues(newState);
     window.parent.postMessage(
-      { type: "pricing-calculator-state-change", state: newState },
+      {
+        type: "pricing-calculator-field-change-request",
+        fieldValues: newFieldValues,
+      },
       "*"
     );
   }
