@@ -6,8 +6,6 @@ export type GarmentLocation =
   | "Left Sleeve"
   | "Right Sleeve";
 
-export type EmbroideryStitchCount = "5k" | "10k";
-
 export type ProductPageFieldValues = {
   quantitySmall?: number;
   quantityMedium?: number;

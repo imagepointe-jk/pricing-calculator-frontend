@@ -1,17 +1,28 @@
-import { useState } from "react";
-import { DesignType, SizeQuantity } from "../sharedTypes";
+import { useEffect, useState } from "react";
+import {
+  DesignType,
+  EmbroideryStitchCount,
+  ProductSpecificData,
+  QuoteRequest,
+} from "../sharedTypes";
+import { ProductPageFieldValues } from "../types";
+import {
+  boolToYesNo,
+  buildQuantitiesBySizeFromState,
+  buildRequestDetailsFromState,
+} from "../utility";
+import { parseProductDataResponse } from "../validations";
+import { DTFMessage } from "./DTFMessage";
 import { DesignTypes } from "./DesignTypes";
+import { DyeSubOptions } from "./DyeSubOptions";
+import { EmbroideryOptions } from "./EmbroideryOptions";
 import { GarmentLocationSelector } from "./GarmentLocationSelector";
 import { QuantityFields } from "./QuantityFields";
-import styles from "./styles/QuoteInterface.module.css";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
-import { EmbroideryStitchCount, ProductPageFieldValues } from "../types";
-import { EmbroideryOptions } from "./EmbroideryOptions";
-import { DTFMessage } from "./DTFMessage";
-import { DyeSubOptions } from "./DyeSubOptions";
-import { boolToYesNo } from "../utility";
+import styles from "./styles/QuoteInterface.module.css";
+import { getQuoteRequestEstimate } from "../fetch";
 
-type QuoteRequestState = {
+export type QuoteRequestState = {
   designType: DesignType;
   quantities: {
     small: number;
@@ -84,10 +95,10 @@ const initialState: QuoteRequestState = {
     rightSleeveColors: 1,
   },
   embroideryOptions: {
-    leftChestStitches: "5k",
-    rightChestStitches: "5k",
-    leftSleeveStitches: "5k",
-    rightSleeveStitches: "5k",
+    leftChestStitches: "5",
+    rightChestStitches: "5",
+    leftSleeveStitches: "5",
+    rightSleeveStitches: "5",
   },
   dyeSubOptions: {
     pouch: false,
@@ -98,6 +109,9 @@ const initialState: QuoteRequestState = {
 
 export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
+  const [productData, setProductData] = useState(
+    null as ProductSpecificData | null
+  );
   const { designType, comments } = requestState;
 
   function buildNewFieldValues(
@@ -202,6 +216,48 @@ export function QuoteInterface() {
       "*"
     );
   }
+
+  useEffect(() => {
+    window.addEventListener("message", (e) => {
+      const allowed = true; //TODO: Actually add allowed origins
+      if (!allowed) {
+        console.log("Received a message from disallowed origin " + e.origin);
+        return;
+      }
+
+      if (e.data.type === "pricing-calculator-product-data-response") {
+        try {
+          const parsed = parseProductDataResponse(e.data.productData);
+          setProductData(parsed);
+        } catch (error) {
+          console.error(
+            "Invalid product data response from the parent window!"
+          );
+        }
+      }
+    });
+
+    window.parent.postMessage(
+      { type: "pricing-calculator-product-data-request" },
+      "*"
+    );
+  }, []);
+
+  useEffect(() => {
+    async function getEstimate() {
+      if (!productData) return;
+
+      const request: QuoteRequest = {
+        details: buildRequestDetailsFromState(requestState),
+        productSpecificData: productData,
+        quantitiesBySize: buildQuantitiesBySizeFromState(requestState),
+      };
+      const response = await getQuoteRequestEstimate(request);
+      const json = await response.json();
+      console.log(json);
+    }
+    getEstimate();
+  }, [requestState]);
 
   return (
     <div className={styles["main"]}>

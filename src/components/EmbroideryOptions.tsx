@@ -1,4 +1,5 @@
-import { EmbroideryStitchCount, GarmentLocation } from "../types";
+import { EmbroideryStitchCount, stitchCounts } from "../sharedTypes";
+import { GarmentLocation } from "../types";
 import { QuoteRequestStateProps } from "./QuoteInterface";
 
 export function EmbroideryOptions({ state, setState }: QuoteRequestStateProps) {
@@ -92,8 +93,8 @@ function EmbroideryStitchCountOption({
           changeFn(location, e.target.value as EmbroideryStitchCount)
         }
       >
-        {["5k", "10k"].map((n) => (
-          <option>{n}</option>
+        {stitchCounts.map((n) => (
+          <option>{`${n}k`}</option>
         ))}
       </select>{" "}
     </label>

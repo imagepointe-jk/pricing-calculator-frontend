@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const garmentSizes = [
+const garmentSizes = [
   "Small",
   "Medium",
   "Large",
@@ -20,8 +20,8 @@ const designTypes = [
 const designTypeSchema = z.enum(designTypes);
 
 //actually 5k, 10k, etc.
-const stitchCounts = ["5", "10"] as const;
-const stitchCountSchema = z.enum(stitchCounts);
+export const stitchCounts = ["5", "10"] as const;
+export const stitchCountSchema = z.enum(stitchCounts);
 
 const dtfSizeChoices = ["small", "large", "small and large"] as const;
 const dtfSizeChoiceSchema = z.enum(dtfSizeChoices);
@@ -75,7 +75,7 @@ export const dtfRequestDetailsSchema = z.object({
 });
 
 export const dyeSubRequestDetailsSchema = z.object({
-  locationCount: z.enum(["1", "2"]),
+  dyeSubLocationCount: z.enum(["1", "2"]),
 });
 
 const pricingScheduleEntrySchema = z.object({
@@ -83,7 +83,7 @@ const pricingScheduleEntrySchema = z.object({
   pricePerProduct: z.number(),
 });
 
-const productSpecificDataSchema = z.object({
+export const productSpecificDataSchema = z.object({
   pricingSchedule: z.array(pricingScheduleEntrySchema),
   sizeUpcharges: z.array(sizeUpchargeSchema),
 });
@@ -93,7 +93,7 @@ const sizeQuantitySchema = z.object({
   size: garmentSizeSchema,
 });
 
-const quoteRequestSchema = z.object({
+export const quoteRequestSchema = z.object({
   quantitiesBySize: z.array(sizeQuantitySchema),
   productSpecificData: productSpecificDataSchema,
   details: z.union([
@@ -126,4 +126,6 @@ export type DyeSubRequestDetails = z.infer<typeof dyeSubRequestDetailsSchema>;
 export type PricingScheduleEntry = z.infer<typeof pricingScheduleEntrySchema>;
 export type SizeQuantity = z.infer<typeof sizeQuantitySchema>;
 export type ProductSpecificData = z.infer<typeof productSpecificDataSchema>;
+export type EmbroideryStitchCount = z.infer<typeof stitchCountSchema>;
+export type DTFSizeChoice = z.infer<typeof dtfSizeChoiceSchema>;
 export type QuoteRequest = z.infer<typeof quoteRequestSchema>;
