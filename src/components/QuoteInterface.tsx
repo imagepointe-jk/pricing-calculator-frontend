@@ -48,6 +48,7 @@ type QuoteRequestState = {
     pouch: boolean;
     hood: boolean;
   };
+  comments: string;
 };
 
 export type QuoteRequestStateProps = {
@@ -92,11 +93,12 @@ const initialState: QuoteRequestState = {
     pouch: false,
     hood: true,
   },
+  comments: "",
 };
 
 export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
-  const { designType } = requestState;
+  const { designType, comments } = requestState;
 
   function buildNewFieldValues(
     newState: QuoteRequestState
@@ -137,6 +139,7 @@ export function QuoteInterface() {
       quantity2XL: quantities["2xl"] > 0 ? quantities["2xl"] : undefined,
       quantity3XL: quantities["3xl"] > 0 ? quantities["3xl"] : undefined,
       quantity4XL: quantities["4xl"] > 0 ? quantities["4xl"] : undefined,
+      comments: newState.comments,
     };
 
     if (
@@ -219,7 +222,16 @@ export function QuoteInterface() {
       )}
       <div>
         <div>Comments</div>
-        <textarea name="comments" id="comments" cols={30} rows={10}></textarea>
+        <textarea
+          name="comments"
+          id="comments"
+          cols={30}
+          rows={10}
+          value={comments}
+          onChange={(e) =>
+            updateState({ ...requestState, comments: e.target.value })
+          }
+        ></textarea>
       </div>
     </div>
   );

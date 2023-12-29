@@ -35,4 +35,5 @@ export type ProductPageFieldValues = {
   rightSleeveStitchCount?: string;
   dyeSubPouch?: string;
   dyeSubHood?: string;
+  comments?: string;
 };
