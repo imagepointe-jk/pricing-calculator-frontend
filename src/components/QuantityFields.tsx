@@ -8,7 +8,7 @@ export function QuantityFields({ state, setState }: QuoteRequestStateProps) {
     if (size === "Small") newState.quantities.small = newValue;
     if (size === "Medium") newState.quantities.medium = newValue;
     if (size === "Large") newState.quantities.large = newValue;
-    if (size === "Large") newState.quantities.xl = newValue;
+    if (size === "XL") newState.quantities.xl = newValue;
     if (size === "2XL") newState.quantities["2xl"] = newValue;
     if (size === "3XL") newState.quantities["3xl"] = newValue;
     if (size === "4XL") newState.quantities["4xl"] = newValue;
