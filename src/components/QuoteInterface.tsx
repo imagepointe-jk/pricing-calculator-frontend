@@ -170,10 +170,10 @@ export function QuoteInterface() {
     if (designType === "Embroidery") {
       newValues = {
         ...newValues,
-        leftChestStitchCount: leftChestStitches,
-        rightChestStitchCount: rightChestStitches,
-        leftSleeveStitchCount: leftSleeveStitches,
-        rightSleeveStitchCount: rightSleeveStitches,
+        leftChestStitchCount: leftChest ? leftChestStitches : undefined,
+        rightChestStitchCount: rightChest ? rightChestStitches : undefined,
+        leftSleeveStitchCount: leftSleeve ? leftSleeveStitches : undefined,
+        rightSleeveStitchCount: rightSleeve ? rightSleeveStitches : undefined,
       };
     }
 
