@@ -181,7 +181,7 @@ export function QuoteInterface() {
       newValues = {
         ...newValues,
         dyeSubHood: boolToYesNo(hood),
-        dyeSubPouch: boolToYesNo(hood),
+        dyeSubPouch: boolToYesNo(pouch),
       };
     }
 
