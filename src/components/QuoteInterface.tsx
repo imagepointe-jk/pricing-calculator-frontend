@@ -180,8 +180,8 @@ export function QuoteInterface() {
     if (designType === "Dye Sublimation") {
       newValues = {
         ...newValues,
-        dyeSubHood: hood,
-        dyeSubPouch: pouch,
+        dyeSubHood: boolToYesNo(hood),
+        dyeSubPouch: boolToYesNo(hood),
       };
     }
 

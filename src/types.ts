@@ -33,6 +33,6 @@ export type ProductPageFieldValues = {
   rightChestStitchCount?: string;
   leftSleeveStitchCount?: string;
   rightSleeveStitchCount?: string;
-  dyeSubPouch?: boolean;
-  dyeSubHood?: boolean;
+  dyeSubPouch?: string;
+  dyeSubHood?: string;
 };
