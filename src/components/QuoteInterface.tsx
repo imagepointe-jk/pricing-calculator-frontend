@@ -130,13 +130,13 @@ export function QuoteInterface() {
     } = newState;
     let newValues: ProductPageFieldValues = {
       designType,
-      quantitySmall: quantities.small,
-      quantityMedium: quantities.medium,
-      quantityLarge: quantities.large,
-      quantityXL: quantities.xl,
-      quantity2XL: quantities["2xl"],
-      quantity3XL: quantities["3xl"],
-      quantity4XL: quantities["4xl"],
+      quantitySmall: quantities.small > 0 ? quantities.small : undefined,
+      quantityMedium: quantities.medium > 0 ? quantities.medium : undefined,
+      quantityLarge: quantities.large > 0 ? quantities.large : undefined,
+      quantityXL: quantities.xl > 0 ? quantities.xl : undefined,
+      quantity2XL: quantities["2xl"] > 0 ? quantities["2xl"] : undefined,
+      quantity3XL: quantities["3xl"] > 0 ? quantities["3xl"] : undefined,
+      quantity4XL: quantities["4xl"] > 0 ? quantities["4xl"] : undefined,
     };
 
     if (
@@ -158,12 +158,12 @@ export function QuoteInterface() {
     if (designType === "Screen Print") {
       newValues = {
         ...newValues,
-        fullBackColorCount: fullBackColors,
-        fullFrontColorCount: fullFrontColors,
-        leftChestColorCount: leftChestColors,
-        rightChestColorCount: rightChestColors,
-        leftSleeveColorCount: leftSleeveColors,
-        rightSleeveColorCount: rightSleeveColors,
+        fullBackColorCount: fullBack ? fullBackColors : undefined,
+        fullFrontColorCount: fullFront ? fullFrontColors : undefined,
+        leftChestColorCount: leftChest ? leftChestColors : undefined,
+        rightChestColorCount: rightChest ? rightChestColors : undefined,
+        leftSleeveColorCount: leftSleeve ? leftSleeveColors : undefined,
+        rightSleeveColorCount: rightSleeve ? rightSleeveColors : undefined,
       };
     }
 
