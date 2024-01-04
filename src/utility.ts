@@ -31,7 +31,7 @@ export function buildQuantitiesBySizeFromState(
     },
     {
       size: "XL",
-      quantity: quantities.large,
+      quantity: quantities.xl,
     },
     {
       size: "2XL",
