@@ -98,6 +98,8 @@ export function buildRequestDetailsFromState(requestState: QuoteRequestState) {
   ]
     .filter((item) => item)
     .map((item) => {
+      if (item === false) return "0";
+      else return item;
       if (item === "5") return "5";
       else return "10";
     });
@@ -111,9 +113,9 @@ export function buildRequestDetailsFromState(requestState: QuoteRequestState) {
     return screenPrintDetails;
   } else if (designType === "Embroidery") {
     const embroideryDetails: EmbroideryRequestDetails = {
-      location1StitchCount: stitchCounts[0],
-      location2StitchCount: stitchCounts[1],
-      location3StitchCount: stitchCounts[2],
+      location1StitchCount: stitchCounts[0] || "0",
+      location2StitchCount: stitchCounts[1] || "0",
+      location3StitchCount: stitchCounts[2] || "0",
     };
     return embroideryDetails;
   } else if (designType === "DTF") {

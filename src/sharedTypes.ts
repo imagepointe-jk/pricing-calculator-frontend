@@ -20,7 +20,7 @@ const designTypes = [
 const designTypeSchema = z.enum(designTypes);
 
 //actually 5k, 10k, etc.
-export const stitchCounts = ["5", "10"] as const;
+export const stitchCounts = ["0", "5", "10"] as const;
 export const stitchCountSchema = z.enum(stitchCounts);
 
 const dtfSizeChoices = ["small", "large", "small and large"] as const;

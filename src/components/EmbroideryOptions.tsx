@@ -88,14 +88,19 @@ function EmbroideryStitchCountOption({
       <select
         name={name}
         id={name}
-        value={selected}
+        value={`${selected}k`}
         onChange={(e) =>
-          changeFn(location, e.target.value as EmbroideryStitchCount)
+          changeFn(
+            location,
+            e.target.value.replace("k", "") as EmbroideryStitchCount
+          )
         }
       >
-        {stitchCounts.map((n) => (
-          <option>{`${n}k`}</option>
-        ))}
+        {stitchCounts
+          .filter((n) => n !== "0")
+          .map((n) => (
+            <option>{`${n}k`}</option>
+          ))}
       </select>{" "}
     </label>
   );
