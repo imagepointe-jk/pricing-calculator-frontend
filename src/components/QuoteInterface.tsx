@@ -10,6 +10,7 @@ import {
   boolToYesNo,
   buildQuantitiesBySizeFromState,
   buildRequestDetailsFromState,
+  requestParentWindowAppResize,
 } from "../utility";
 import {
   parseProductDataResponse,
@@ -110,6 +111,8 @@ const initialState: QuoteRequestState = {
   },
   comments: "",
 };
+
+const interfaceId = "pricing-calculator-interface";
 
 export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
@@ -279,8 +282,14 @@ export function QuoteInterface() {
     getEstimate();
   }, [requestState]);
 
+  useEffect(() => {
+    const heightToRequest =
+      document.getElementById(interfaceId)?.scrollHeight || 0;
+    requestParentWindowAppResize(heightToRequest);
+  });
+
   return (
-    <div className={styles["main"]}>
+    <div className={styles["main"]} id={interfaceId}>
       <GarmentLocationSelector state={requestState} setState={updateState} />
       <DesignTypes state={requestState} setState={updateState} />
       <QuantityFields state={requestState} setState={updateState} />

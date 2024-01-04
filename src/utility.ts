@@ -132,3 +132,13 @@ export function buildRequestDetailsFromState(requestState: QuoteRequestState) {
     return dyeSubDetails;
   }
 }
+
+export function requestParentWindowAppResize(newHeight: number) {
+  window.parent.postMessage(
+    {
+      type: "pricing-calculator-resize-request",
+      height: newHeight,
+    },
+    "*"
+  );
+}
