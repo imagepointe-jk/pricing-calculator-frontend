@@ -41,18 +41,9 @@ export function ScreenPrintOptions({
     setState(newState);
   }
 
-  const noLocations =
-    !fullBack &&
-    !fullFront &&
-    !leftChest &&
-    !leftSleeve &&
-    !rightChest &&
-    !rightSleeve;
-
   //TODO: Show error message for selecting more than 4 locations
   return (
     <div>
-      {noLocations && <h3>Please select at least one location.</h3>}
       {leftChest && (
         <ScreenPrintColorCountOption
           location="Left Chest"

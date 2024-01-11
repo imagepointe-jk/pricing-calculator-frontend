@@ -135,11 +135,78 @@ export function buildRequestDetailsFromState(requestState: QuoteRequestState) {
   }
 }
 
+//returns an error string if anything is invalid about the request state
+export function checkRequestStateError(
+  requestState: QuoteRequestState
+): string | null {
+  const {
+    locations: {
+      fullBack,
+      fullFront,
+      leftChest,
+      leftSleeve,
+      rightChest,
+      rightSleeve,
+    },
+    designType,
+    quantities: {
+      small,
+      medium,
+      large,
+      xl,
+      "2xl": twoXL,
+      "3xl": threeXL,
+      "4xl": fourXL,
+    },
+  } = requestState;
+  const locationsSelected = [
+    fullBack,
+    fullFront,
+    leftChest,
+    leftSleeve,
+    rightChest,
+    rightSleeve,
+  ].reduce((accum, item) => (item === true ? accum + 1 : accum), 0);
+  const totalQuantitiesBySize = [
+    small,
+    medium,
+    large,
+    xl,
+    twoXL,
+    threeXL,
+    fourXL,
+  ].reduce((accum, item) => accum + item, 0);
+
+  if (locationsSelected === 0 && designType !== "Dye Sublimation") {
+    return "Please select at least one location.";
+  }
+  if (locationsSelected > 2 && designType === "DTF") {
+    return "Please select no more than two locations.";
+  }
+  if (totalQuantitiesBySize === 0) {
+    return "Please request at least one of any size.";
+  }
+
+  return null;
+}
+
 export function requestParentWindowAppResize(newHeight: number) {
   window.parent.postMessage(
     {
       type: "pricing-calculator-resize-request",
       height: newHeight,
+    },
+    "*"
+  );
+}
+
+//inform the parent window of whether the user's current input is valid.
+//used to determine whether the submit button should be disabled or not.
+export function requestParentWindowValidInputUpdate(validInput: boolean) {
+  window.parent.postMessage(
+    {
+      type: "pricing-calculator-valid-input-update",
+      validInput,
     },
     "*"
   );

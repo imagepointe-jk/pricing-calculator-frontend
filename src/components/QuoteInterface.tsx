@@ -10,13 +10,14 @@ import {
   boolToYesNo,
   buildQuantitiesBySizeFromState,
   buildRequestDetailsFromState,
+  checkRequestStateError,
   requestParentWindowAppResize,
+  requestParentWindowValidInputUpdate,
 } from "../utility";
 import {
   parseProductDataResponse,
   parseQuoteEstimateResponse,
 } from "../validations";
-import { DTFMessage } from "./DTFMessage";
 import { DesignTypes } from "./DesignTypes";
 import { DyeSubOptions } from "./DyeSubOptions";
 import { EmbroideryOptions } from "./EmbroideryOptions";
@@ -116,6 +117,9 @@ const interfaceId = "pricing-calculator-interface";
 
 export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
+  const [requestStateError, setRequestStateError] = useState(
+    null as string | null
+  ); //whether there's anything wrong with the user's current request options
   const [productData, setProductData] = useState(
     null as ProductSpecificData | null
   );
@@ -257,9 +261,17 @@ export function QuoteInterface() {
   useEffect(() => {
     async function getEstimate() {
       if (!productData) return;
+      setQuoteEstimate(null);
+      const error = checkRequestStateError(requestState);
+      if (error) {
+        setRequestStateError(error);
+        requestParentWindowValidInputUpdate(false);
+        return;
+      }
+      requestParentWindowValidInputUpdate(true);
+      setRequestStateError(null);
 
       try {
-        setQuoteEstimate(null);
         setQuoteEstimateLoading(true);
 
         const request: QuoteRequest = {
@@ -299,12 +311,10 @@ export function QuoteInterface() {
       {designType === "Embroidery" && (
         <EmbroideryOptions state={requestState} setState={updateState} />
       )}
-      {designType === "DTF" && (
-        <DTFMessage state={requestState} setState={updateState} />
-      )}
       {designType === "Dye Sublimation" && (
         <DyeSubOptions state={requestState} setState={updateState} />
       )}
+      {requestStateError && <h3>{requestStateError}</h3>}
       <div>
         <div>Comments</div>
         <textarea

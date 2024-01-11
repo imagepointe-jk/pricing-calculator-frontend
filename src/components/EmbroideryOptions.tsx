@@ -12,7 +12,6 @@ export function EmbroideryOptions({ state, setState }: QuoteRequestStateProps) {
       rightSleeveStitches,
     },
   } = state;
-  const noLocations = !leftChest && !leftSleeve && !rightChest && !rightSleeve;
 
   function changeLocationStitchCount(
     location: GarmentLocation,
@@ -34,7 +33,6 @@ export function EmbroideryOptions({ state, setState }: QuoteRequestStateProps) {
 
   return (
     <div>
-      {noLocations && <h3>Please select at least one location.</h3>}
       {leftChest && (
         <EmbroideryStitchCountOption
           changeFn={changeLocationStitchCount}
