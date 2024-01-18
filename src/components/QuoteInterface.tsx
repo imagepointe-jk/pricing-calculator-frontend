@@ -128,6 +128,7 @@ export function QuoteInterface() {
   );
   const [quoteEstimateLoading, setQuoteEstimateLoading] = useState(false);
   const { designType, comments } = requestState;
+  const showOptionsHeading = !requestStateError && designType !== "DTF";
 
   function buildNewFieldValues(
     newState: QuoteRequestState
@@ -302,36 +303,41 @@ export function QuoteInterface() {
 
   return (
     <div className={styles["main"]} id={interfaceId}>
-      <GarmentLocationSelector state={requestState} setState={updateState} />
-      <DesignTypes state={requestState} setState={updateState} />
-      <QuantityFields state={requestState} setState={updateState} />
-      {designType === "Screen Print" && (
-        <ScreenPrintOptions state={requestState} setState={updateState} />
-      )}
-      {designType === "Embroidery" && (
-        <EmbroideryOptions state={requestState} setState={updateState} />
-      )}
-      {designType === "Dye Sublimation" && (
-        <DyeSubOptions state={requestState} setState={updateState} />
-      )}
-      {requestStateError && <h3>{requestStateError}</h3>}
-      <div>
-        <div>Comments</div>
-        <textarea
-          name="comments"
-          id="comments"
-          cols={30}
-          rows={10}
-          value={comments}
-          onChange={(e) =>
-            updateState({ ...requestState, comments: e.target.value })
-          }
-        ></textarea>
+      <div className={styles["primary-column"]}>
+        <GarmentLocationSelector state={requestState} setState={updateState} />
+        <DesignTypes state={requestState} setState={updateState} />
+        <QuantityFields state={requestState} setState={updateState} />
+        {showOptionsHeading && <h4>Options</h4>}
+        {designType === "Screen Print" && (
+          <ScreenPrintOptions state={requestState} setState={updateState} />
+        )}
+        {designType === "Embroidery" && (
+          <EmbroideryOptions state={requestState} setState={updateState} />
+        )}
+        {designType === "Dye Sublimation" && (
+          <DyeSubOptions state={requestState} setState={updateState} />
+        )}
+        {requestStateError && <h3>{requestStateError}</h3>}
       </div>
-      <EstimateArea
-        quoteEstimate={quoteEstimate}
-        loading={quoteEstimateLoading}
-      />
+      <div className={styles["secondary-column"]}>
+        <EstimateArea
+          quoteEstimate={quoteEstimate}
+          loading={quoteEstimateLoading}
+        />
+        <div>
+          <div>Comments</div>
+          <textarea
+            name="comments"
+            id="comments"
+            cols={30}
+            rows={10}
+            value={comments}
+            onChange={(e) =>
+              updateState({ ...requestState, comments: e.target.value })
+            }
+          ></textarea>
+        </div>
+      </div>
     </div>
   );
 }

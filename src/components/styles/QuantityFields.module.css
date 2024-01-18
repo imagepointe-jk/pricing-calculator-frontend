@@ -3,19 +3,24 @@
   border-radius: 10px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
+.fields {
+  display: flex;
+  flex-wrap: wrap;
   row-gap: 10px;
   padding: 10px;
-  justify-items: end;
+  margin: auto;
+  height: 200px;
+  flex-direction: column;
+  align-items: end;
+  justify-content: flex-start;
 }
 
-.grid input {
-  width: 30px;
+.fields input {
+  width: 90px;
   padding: 5px;
+  font-size: 1.125rem;
 }
 
-.grid label {
+.fields label {
   padding-right: 17px;
 }

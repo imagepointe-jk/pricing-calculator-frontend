@@ -1,10 +1,37 @@
 .main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
 }
 
 .design-type-options {
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 10px;
+}
+
+.primary-column {
+  max-width: 315px;
+}
+
+.secondary-column {
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    width: 320px;
+    justify-content: initial;
+    gap: 20px;
+    margin: auto;
+  }
+
+  .secondary-column {
+    justify-content: initial;
+    gap: 20px;
+  }
 }
