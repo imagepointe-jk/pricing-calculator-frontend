@@ -11,7 +11,6 @@ import {
   buildQuantitiesBySizeFromState,
   buildRequestDetailsFromState,
   checkRequestStateError,
-  requestParentWindowAppResize,
   requestParentWindowValidInputUpdate,
 } from "../utility";
 import {
@@ -247,7 +246,8 @@ export function QuoteInterface() {
           setProductData(parsed);
         } catch (error) {
           console.error(
-            "Invalid product data response from the parent window!"
+            "Invalid product data response from the parent window!",
+            error
           );
         }
       }
@@ -295,47 +295,63 @@ export function QuoteInterface() {
     getEstimate();
   }, [requestState]);
 
-  useEffect(() => {
-    const heightToRequest =
-      document.getElementById(interfaceId)?.scrollHeight || 0;
-    requestParentWindowAppResize(heightToRequest);
-  });
+  //currently the app should not need to resize when state changes
+  // useEffect(() => {
+  //   const heightToRequest =
+  //     document.getElementById(interfaceId)?.scrollHeight || 0;
+  //   requestParentWindowAppResize(heightToRequest);
+  // });
 
   return (
-    <div className={styles["main"]} id={interfaceId}>
-      <div className={styles["primary-column"]}>
-        <GarmentLocationSelector state={requestState} setState={updateState} />
-        <DesignTypes state={requestState} setState={updateState} />
-        <QuantityFields state={requestState} setState={updateState} />
-        {showOptionsHeading && <h4>Options</h4>}
-        {designType === "Screen Print" && (
-          <ScreenPrintOptions state={requestState} setState={updateState} />
-        )}
-        {designType === "Embroidery" && (
-          <EmbroideryOptions state={requestState} setState={updateState} />
-        )}
-        {designType === "Dye Sublimation" && (
-          <DyeSubOptions state={requestState} setState={updateState} />
-        )}
-        {requestStateError && <h3>{requestStateError}</h3>}
-      </div>
-      <div className={styles["secondary-column"]}>
-        <EstimateArea
-          quoteEstimate={quoteEstimate}
-          loading={quoteEstimateLoading}
+    <div className={styles["main"]}>
+      <div className={styles["product-header"]}>
+        <img
+          className={styles["product-image"]}
+          src={productData?.imageUrl}
+          alt=""
         />
-        <div>
-          <div>Comments</div>
-          <textarea
-            name="comments"
-            id="comments"
-            cols={30}
-            rows={10}
-            value={comments}
-            onChange={(e) =>
-              updateState({ ...requestState, comments: e.target.value })
-            }
-          ></textarea>
+        <h2>{productData?.productName}</h2>
+      </div>
+      <div className={styles["column-flex"]} id={interfaceId}>
+        <div className={styles["primary-column"]}>
+          <GarmentLocationSelector
+            state={requestState}
+            setState={updateState}
+          />
+          <DesignTypes state={requestState} setState={updateState} />
+          <QuantityFields state={requestState} setState={updateState} />
+          {showOptionsHeading && <h4>Options</h4>}
+          {designType === "Screen Print" && (
+            <ScreenPrintOptions state={requestState} setState={updateState} />
+          )}
+          {designType === "Embroidery" && (
+            <EmbroideryOptions state={requestState} setState={updateState} />
+          )}
+          {designType === "Dye Sublimation" && (
+            <DyeSubOptions state={requestState} setState={updateState} />
+          )}
+          {requestStateError && <h3>{requestStateError}</h3>}
+        </div>
+        <div className={styles["secondary-column"]}>
+          <div>
+            <EstimateArea
+              quoteEstimate={quoteEstimate}
+              loading={quoteEstimateLoading}
+            />
+          </div>
+          <div>
+            <div>Comments</div>
+            <textarea
+              name="comments"
+              id="comments"
+              cols={30}
+              rows={10}
+              value={comments}
+              onChange={(e) =>
+                updateState({ ...requestState, comments: e.target.value })
+              }
+            ></textarea>
+          </div>
         </div>
       </div>
     </div>

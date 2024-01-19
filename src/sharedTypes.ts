@@ -71,7 +71,7 @@ export const embroideryRequestDetailsSchema = z.object({
 });
 
 export const dtfRequestDetailsSchema = z.object({
-  sizeChoices: dtfSizeChoiceSchema,
+  dtfSizeChoices: dtfSizeChoiceSchema,
 });
 
 export const dyeSubRequestDetailsSchema = z.object({
@@ -84,6 +84,8 @@ const pricingScheduleEntrySchema = z.object({
 });
 
 export const productSpecificDataSchema = z.object({
+  imageUrl: z.string(),
+  productName: z.string(),
   pricingSchedule: z.array(pricingScheduleEntrySchema),
   sizeUpcharges: z.array(sizeUpchargeSchema),
 });

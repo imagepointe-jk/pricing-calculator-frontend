@@ -121,11 +121,11 @@ export function buildRequestDetailsFromState(requestState: QuoteRequestState) {
   } else if (designType === "DTF") {
     const hasSmall = leftChest || rightChest || leftSleeve || rightSleeve;
     const hasLarge = fullFront || fullBack;
-    let sizeChoices: DTFSizeChoice;
-    if (hasSmall && !hasLarge) sizeChoices = "small";
-    else if (!hasSmall && hasLarge) sizeChoices = "large";
-    else sizeChoices = "small and large";
-    const dtfDetails: DTFRequestDetails = { sizeChoices };
+    let dtfSizeChoices: DTFSizeChoice;
+    if (hasSmall && !hasLarge) dtfSizeChoices = "small";
+    else if (!hasSmall && hasLarge) dtfSizeChoices = "large";
+    else dtfSizeChoices = "small and large";
+    const dtfDetails: DTFRequestDetails = { dtfSizeChoices };
     return dtfDetails;
   } else {
     const dyeSubDetails: DyeSubRequestDetails = {
