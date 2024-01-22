@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getQuoteRequestEstimate } from "../fetch";
 import {
   DesignType,
   EmbroideryStitchCount,
@@ -17,15 +18,10 @@ import {
   parseProductDataResponse,
   parseQuoteEstimateResponse,
 } from "../validations";
-import { DesignTypes } from "./DesignTypes";
-import { DyeSubOptions } from "./DyeSubOptions";
-import { EmbroideryOptions } from "./EmbroideryOptions";
-import { GarmentLocationSelector } from "./GarmentLocationSelector";
-import { QuantityFields } from "./QuantityFields";
-import { ScreenPrintOptions } from "./ScreenPrintOptions";
-import styles from "./styles/QuoteInterface.module.css";
-import { getQuoteRequestEstimate } from "../fetch";
 import { EstimateArea } from "./EstimateArea";
+import { GarmentLocationSelector } from "./GarmentLocationSelector";
+import { InputTabs } from "./InputTabs";
+import styles from "./styles/QuoteInterface.module.css";
 
 export type QuoteRequestState = {
   designType: DesignType;
@@ -127,7 +123,6 @@ export function QuoteInterface() {
   );
   const [quoteEstimateLoading, setQuoteEstimateLoading] = useState(false);
   const { designType, comments } = requestState;
-  const showOptionsHeading = !requestStateError && designType !== "DTF";
 
   function buildNewFieldValues(
     newState: QuoteRequestState
@@ -318,18 +313,11 @@ export function QuoteInterface() {
             state={requestState}
             setState={updateState}
           />
-          <DesignTypes state={requestState} setState={updateState} />
-          <QuantityFields state={requestState} setState={updateState} />
-          {showOptionsHeading && <h4>Options</h4>}
-          {designType === "Screen Print" && (
-            <ScreenPrintOptions state={requestState} setState={updateState} />
-          )}
-          {designType === "Embroidery" && (
-            <EmbroideryOptions state={requestState} setState={updateState} />
-          )}
-          {designType === "Dye Sublimation" && (
-            <DyeSubOptions state={requestState} setState={updateState} />
-          )}
+          <InputTabs
+            state={requestState}
+            setState={updateState}
+            anyError={requestStateError !== null}
+          />
           {requestStateError && <h3>{requestStateError}</h3>}
         </div>
         <div className={styles["secondary-column"]}>

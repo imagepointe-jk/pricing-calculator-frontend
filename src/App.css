@@ -1,3 +1,7 @@
+:root {
+  --color-alpha: #0068cb;
+}
+
 body {
   font-size: 1.125rem;
   margin: 0;

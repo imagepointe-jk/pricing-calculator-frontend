@@ -1,0 +1,45 @@
+.tab-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-list li {
+  list-style: none;
+}
+
+.tab {
+  padding: 10px;
+  border: 1px solid lightgray;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1rem;
+}
+
+.tab:hover {
+  color: var(--color-alpha);
+}
+
+.selected-tab {
+  background-color: var(--color-alpha);
+  color: white;
+}
+
+.selected-tab:hover {
+  color: white;
+}
+
+.disabled-tab {
+  color: lightgray;
+  cursor: initial;
+}
+
+.disabled-tab:hover {
+  color: lightgray;
+}
+
+.selected-tab-panel {
+  min-height: 300px;
+  border: 1px solid lightgray;
+}

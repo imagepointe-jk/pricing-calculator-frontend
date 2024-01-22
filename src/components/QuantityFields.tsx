@@ -73,7 +73,6 @@ export function QuantityFields({ state, setState }: QuoteRequestStateProps) {
 
   return (
     <div className={styles["main"]}>
-      <h4>Quantities</h4>
       <div className={styles["fields"]}>
         {fields.map((field) => (
           <label htmlFor={`quantity-${field.size}`}>
