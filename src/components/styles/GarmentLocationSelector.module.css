@@ -5,9 +5,20 @@
 .location-button {
   position: absolute;
   width: 10px;
-  height: 15px;
+  height: 20px;
+  background: none;
+  border: 4px dashed lightgray;
+  cursor: pointer;
+}
+
+.location-button:hover {
+  border-color: gray;
 }
 
 .selected {
-  background-color: red;
+  border: 5px solid var(--color-alpha);
+}
+
+.selected:hover {
+  border-color: var(--color-alpha);
 }
