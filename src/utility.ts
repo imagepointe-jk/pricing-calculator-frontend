@@ -200,6 +200,12 @@ export function requestParentWindowAppResize(newHeight: number) {
   );
 }
 
+export function requestParentWindowAdaptToAppHeight() {
+  requestParentWindowAppResize(
+    document.getElementById("root")?.scrollHeight || 900
+  );
+}
+
 //inform the parent window of whether the user's current input is valid.
 //used to determine whether the submit button should be disabled or not.
 export function requestParentWindowValidInputUpdate(validInput: boolean) {

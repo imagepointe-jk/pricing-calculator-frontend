@@ -12,6 +12,7 @@ import {
   buildQuantitiesBySizeFromState,
   buildRequestDetailsFromState,
   checkRequestStateError,
+  requestParentWindowAdaptToAppHeight,
   requestParentWindowValidInputUpdate,
 } from "../utility";
 import {
@@ -258,6 +259,7 @@ export function QuoteInterface() {
           const parsedJson = parseWooCommerceProductData(json);
           setProductData(parsedJson);
           setProductDataLoading(false);
+          requestParentWindowAdaptToAppHeight();
         } catch (error) {
           setProductDataLoading(false);
           console.error("Invalid product data response!", error);
