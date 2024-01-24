@@ -17,7 +17,9 @@ export function parseQuoteEstimateResponse(json: any) {
 
 export function parseWooCommerceProductData(json: any) {
   const product = json[0];
-  const imageUrl = product.images[0].src;
+  const imageUrl = product.images[0]
+    ? product.images[0].src
+    : "https://placehold.co/300x300?text=Not+Found";
   const productName = product.name;
 
   const pricingSchedule = parseWooCommercePricingSchedule(product);
