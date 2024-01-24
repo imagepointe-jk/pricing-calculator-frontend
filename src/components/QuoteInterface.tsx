@@ -244,8 +244,14 @@ export function QuoteInterface() {
           if (typeof productName !== "string") {
             throw new Error("No product name provided.");
           }
-          const productDataFetched = await getProductData(productName);
-          const json = await productDataFetched.json();
+          const productDataFetchResponse = await getProductData(productName);
+          const json = await productDataFetchResponse.json();
+          if (!productDataFetchResponse.ok) {
+            throw new Error(`${json.message}`);
+          }
+          if (json.length === 0) {
+            throw new Error(`Product name ${productName} not found.`);
+          }
           const parsedJson = parseWooCommerceProductData(json);
           setProductData(parsedJson);
           setProductDataLoading(false);
