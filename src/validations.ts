@@ -119,7 +119,7 @@ function parseWooCommercePricingSchedule(product: any) {
     .map((item) => {
       const entry: PricingScheduleEntry = {
         quantity: +item.quantity,
-        pricePerProduct: +item.pricePerProduct,
+        pricePerProduct: +item.pricePerProduct.replace("$", ""),
       };
       return entry;
     });

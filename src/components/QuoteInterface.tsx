@@ -115,7 +115,7 @@ const interfaceId = "pricing-calculator-interface";
 export function QuoteInterface() {
   const [requestState, setRequestState] = useState(initialState);
   const [requestStateError, setRequestStateError] = useState(
-    null as string | null
+    "Please select at least one location." as string | null
   ); //whether there's anything wrong with the user's current request options
   const [productData, setProductData] = useState(
     null as ProductSpecificData | null
