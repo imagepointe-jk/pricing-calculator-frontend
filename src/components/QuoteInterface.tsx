@@ -244,7 +244,10 @@ export function QuoteInterface() {
           if (typeof productName !== "string") {
             throw new Error("No product name provided.");
           }
-          const productDataFetchResponse = await getProductData(productName);
+          const productNameCleaned = productName.replace("Private:", "");
+          const productDataFetchResponse = await getProductData(
+            productNameCleaned
+          );
           const json = await productDataFetchResponse.json();
           if (!productDataFetchResponse.ok) {
             throw new Error(`${json.message}`);
