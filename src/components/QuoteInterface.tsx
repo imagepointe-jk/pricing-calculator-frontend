@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getQuoteRequestEstimate } from "../fetch";
+import { getProductData, getQuoteRequestEstimate } from "../fetch";
 import {
   DesignType,
   EmbroideryStitchCount,
@@ -15,13 +15,15 @@ import {
   requestParentWindowValidInputUpdate,
 } from "../utility";
 import {
-  parseProductDataResponse,
   parseQuoteEstimateResponse,
+  parseWooCommerceProductData,
 } from "../validations";
 import { EstimateArea } from "./EstimateArea";
 import { GarmentLocationSelector } from "./GarmentLocationSelector";
 import { InputTabs } from "./InputTabs";
 import styles from "./styles/QuoteInterface.module.css";
+import { LoadingIndicator } from "./LoadingIndicator";
+import { ErrorMessage } from "./ErrorMessage";
 
 export type QuoteRequestState = {
   designType: DesignType;
@@ -118,6 +120,7 @@ export function QuoteInterface() {
   const [productData, setProductData] = useState(
     null as ProductSpecificData | null
   );
+  const [productDataLoading, setProductDataLoading] = useState(true);
   const [quoteEstimate, setQuoteEstimate] = useState(
     null as QuoteEstimate | null
   );
@@ -228,7 +231,7 @@ export function QuoteInterface() {
   }
 
   useEffect(() => {
-    window.addEventListener("message", (e) => {
+    window.addEventListener("message", async (e) => {
       const allowed = true; //TODO: Actually add allowed origins
       if (!allowed) {
         console.log("Received a message from disallowed origin " + e.origin);
@@ -237,13 +240,18 @@ export function QuoteInterface() {
 
       if (e.data.type === "pricing-calculator-product-data-response") {
         try {
-          const parsed = parseProductDataResponse(e.data.productData);
-          setProductData(parsed);
+          const productName = e.data.productName;
+          if (typeof productName !== "string") {
+            throw new Error("No product name provided.");
+          }
+          const productDataFetched = await getProductData(productName);
+          const json = await productDataFetched.json();
+          const parsedJson = parseWooCommerceProductData(json);
+          setProductData(parsedJson);
+          setProductDataLoading(false);
         } catch (error) {
-          console.error(
-            "Invalid product data response from the parent window!",
-            error
-          );
+          setProductDataLoading(false);
+          console.error("Invalid product data response!", error);
         }
       }
     });
@@ -299,49 +307,55 @@ export function QuoteInterface() {
 
   return (
     <div className={styles["main"]}>
-      <div className={styles["product-header"]}>
-        <img
-          className={styles["product-image"]}
-          src={productData?.imageUrl}
-          alt=""
-        />
-        <h2>{productData?.productName}</h2>
-      </div>
-      <div className={styles["column-flex"]} id={interfaceId}>
-        <div className={styles["primary-column"]}>
-          <GarmentLocationSelector
-            state={requestState}
-            setState={updateState}
-          />
-          <InputTabs
-            state={requestState}
-            setState={updateState}
-            anyError={requestStateError !== null}
-          />
-          {requestStateError && <h3>{requestStateError}</h3>}
-        </div>
-        <div className={styles["secondary-column"]}>
-          <div>
-            <EstimateArea
-              quoteEstimate={quoteEstimate}
-              loading={quoteEstimateLoading}
+      {!productData && productDataLoading && <LoadingIndicator />}
+      {!productData && !productDataLoading && <ErrorMessage />}
+      {productData && (
+        <>
+          <div className={styles["product-header"]}>
+            <img
+              className={styles["product-image"]}
+              src={productData.imageUrl}
+              alt=""
             />
+            <h2>{productData.productName}</h2>
           </div>
-          <div>
-            <div>Comments</div>
-            <textarea
-              name="comments"
-              id="comments"
-              cols={30}
-              rows={10}
-              value={comments}
-              onChange={(e) =>
-                updateState({ ...requestState, comments: e.target.value })
-              }
-            ></textarea>
+          <div className={styles["column-flex"]} id={interfaceId}>
+            <div className={styles["primary-column"]}>
+              <GarmentLocationSelector
+                state={requestState}
+                setState={updateState}
+              />
+              <InputTabs
+                state={requestState}
+                setState={updateState}
+                anyError={requestStateError !== null}
+              />
+              {requestStateError && <h3>{requestStateError}</h3>}
+            </div>
+            <div className={styles["secondary-column"]}>
+              <div>
+                <EstimateArea
+                  quoteEstimate={quoteEstimate}
+                  loading={quoteEstimateLoading}
+                />
+              </div>
+              <div>
+                <div>Comments</div>
+                <textarea
+                  name="comments"
+                  id="comments"
+                  cols={30}
+                  rows={10}
+                  value={comments}
+                  onChange={(e) =>
+                    updateState({ ...requestState, comments: e.target.value })
+                  }
+                ></textarea>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,0 +1,539 @@
+[
+  {
+    "id": 20710,
+    "name": "AKWA Men's Full Zip Vest",
+    "slug": "mens-full-zip-vest",
+    "permalink": "https://www.imagepointe.com/shop/apparel/jackets-outerwear/mens-full-zip-vest/",
+    "date_created": "2024-01-08T08:41:15",
+    "date_created_gmt": "2024-01-08T14:41:15",
+    "date_modified": "2024-01-08T09:17:41",
+    "date_modified_gmt": "2024-01-08T15:17:41",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "<p>Introducing our 9 oz. Full Zip Vest – a resilient 3-layer bonded soft shell that defies the elements with water repellency and wind resistance. This sleek vest, featuring a full-length zipper for customizable comfort, is equipped with two side pockets and two hidden pockets, ensuring ample storage for your essentials. Whether you're tackling the great outdoors or navigating urban landscapes, this vest seamlessly combines style and functionality, making it an essential addition to your wardrobe for any adventure.</p>\n<p>Size upcharges:</p>\n<ul>\n<li>2X add $1.50/ea.</li>\n<li>3X add $3.00/ea.</li>\n<li>4X add $5.00/ea.</li>\n</ul>\n",
+    "short_description": "",
+    "sku": "VST103",
+    "price": "1",
+    "regular_price": "1",
+    "sale_price": "",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": true,
+    "total_sales": 1,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": false,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 290,
+        "name": "Jackets &amp; Outerwear",
+        "slug": "jackets-outerwear"
+      }
+    ],
+    "tags": [],
+    "images": [
+      {
+        "id": 20707,
+        "date_created": "2024-01-05T07:47:14",
+        "date_created_gmt": "2024-01-05T19:47:14",
+        "date_modified": "2024-01-05T07:47:14",
+        "date_modified_gmt": "2024-01-05T19:47:14",
+        "src": "https://i0.wp.com/www.imagepointe.com/wp-content/uploads/2024/01/VST103-featured.jpg?fit=900%2C1328&ssl=1",
+        "name": "VST103-featured",
+        "alt": ""
+      },
+      {
+        "id": 20705,
+        "date_created": "2024-01-05T07:46:58",
+        "date_created_gmt": "2024-01-05T19:46:58",
+        "date_modified": "2024-01-05T07:46:58",
+        "date_modified_gmt": "2024-01-05T19:46:58",
+        "src": "https://i0.wp.com/www.imagepointe.com/wp-content/uploads/2024/01/VST103-navy.jpg?fit=900%2C1328&ssl=1",
+        "name": "VST103-navy",
+        "alt": ""
+      },
+      {
+        "id": 20704,
+        "date_created": "2024-01-05T07:46:51",
+        "date_created_gmt": "2024-01-05T19:46:51",
+        "date_modified": "2024-01-05T07:46:51",
+        "date_modified_gmt": "2024-01-05T19:46:51",
+        "src": "https://i0.wp.com/www.imagepointe.com/wp-content/uploads/2024/01/VST103-black.jpg?fit=900%2C1328&ssl=1",
+        "name": "VST103-black",
+        "alt": ""
+      },
+      {
+        "id": 20706,
+        "date_created": "2024-01-05T07:47:08",
+        "date_created_gmt": "2024-01-05T19:47:08",
+        "date_modified": "2024-01-05T07:47:08",
+        "date_modified_gmt": "2024-01-05T19:47:08",
+        "src": "https://i0.wp.com/www.imagepointe.com/wp-content/uploads/2024/01/VST103-charcoal.jpg?fit=900%2C1328&ssl=1",
+        "name": "VST103-charcoal",
+        "alt": ""
+      }
+    ],
+    "attributes": [
+      {
+        "id": 5,
+        "name": "Brand",
+        "slug": "pa_brand",
+        "position": 0,
+        "visible": true,
+        "variation": false,
+        "options": ["AKWA"]
+      },
+      {
+        "id": 1,
+        "name": "Color",
+        "slug": "pa_color",
+        "position": 1,
+        "visible": true,
+        "variation": false,
+        "options": ["Black", "Charcoal", "Navy"]
+      },
+      {
+        "id": 4,
+        "name": "Material",
+        "slug": "pa_material",
+        "position": 2,
+        "visible": true,
+        "variation": false,
+        "options": ["91% Polyester/9% Spandex"]
+      }
+    ],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": -39999,
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>1.00</bdi></span>",
+    "related_ids": [1089, 1532, 483, 502, 4693],
+    "meta_data": [
+      {
+        "id": 2379105,
+        "key": "_last_editor_used_jetpack",
+        "value": "classic-editor"
+      },
+      {
+        "id": 2379106,
+        "key": "af_addon_title_font_size",
+        "value": "14"
+      },
+      {
+        "id": 2379107,
+        "key": "af_addon_option_title_font_size",
+        "value": "12"
+      },
+      {
+        "id": 2379108,
+        "key": "af_addon_field_border_pixels",
+        "value": "1"
+      },
+      {
+        "id": 2379109,
+        "key": "af_addon_desc_font_size",
+        "value": "12"
+      },
+      {
+        "id": 2379110,
+        "key": "af_addon_tooltip_font_size",
+        "value": "12"
+      },
+      {
+        "id": 2379113,
+        "key": "rank_math_internal_links_processed",
+        "value": "1"
+      },
+      {
+        "id": 2379114,
+        "key": "rank_math_seo_score",
+        "value": "15"
+      },
+      {
+        "id": 2379116,
+        "key": "exclude_rule_addons",
+        "value": ""
+      },
+      {
+        "id": 2379117,
+        "key": "af_addon_title_display_as_selector",
+        "value": "af_addon_title_display_text"
+      },
+      {
+        "id": 2379118,
+        "key": "af_addon_heading_type_selector",
+        "value": "addon_h1"
+      },
+      {
+        "id": 2379119,
+        "key": "af_addon_seperator_checkbox",
+        "value": ""
+      },
+      {
+        "id": 2379120,
+        "key": "af_addon_title_seperator",
+        "value": "af_addon_title_seperator_br"
+      },
+      {
+        "id": 2379121,
+        "key": "af_addon_option_title_font_color",
+        "value": ""
+      },
+      {
+        "id": 2379122,
+        "key": "af_addon_title_bg",
+        "value": ""
+      },
+      {
+        "id": 2379123,
+        "key": "af_addon_title_color",
+        "value": ""
+      },
+      {
+        "id": 2379124,
+        "key": "af_addon_bg_color",
+        "value": ""
+      },
+      {
+        "id": 2379125,
+        "key": "af_addon_title_top_left_radius",
+        "value": ""
+      },
+      {
+        "id": 2379126,
+        "key": "af_addon_title_top_right_radius",
+        "value": ""
+      },
+      {
+        "id": 2379127,
+        "key": "af_addon_title_bottom_left_radius",
+        "value": ""
+      },
+      {
+        "id": 2379128,
+        "key": "af_addon_title_bottom_right_radius",
+        "value": ""
+      },
+      {
+        "id": 2379129,
+        "key": "af_addon_title_top_padding",
+        "value": ""
+      },
+      {
+        "id": 2379130,
+        "key": "af_addon_title_bottom_padding",
+        "value": ""
+      },
+      {
+        "id": 2379131,
+        "key": "af_addon_title_left_padding",
+        "value": ""
+      },
+      {
+        "id": 2379132,
+        "key": "af_addon_title_right_padding",
+        "value": ""
+      },
+      {
+        "id": 2379133,
+        "key": "af_addon_field_border",
+        "value": ""
+      },
+      {
+        "id": 2379134,
+        "key": "af_addon_field_border_top_left_radius",
+        "value": ""
+      },
+      {
+        "id": 2379135,
+        "key": "af_addon_field_border_top_right_radius",
+        "value": ""
+      },
+      {
+        "id": 2379136,
+        "key": "af_addon_field_border_bottom_left_radius",
+        "value": ""
+      },
+      {
+        "id": 2379137,
+        "key": "af_addon_field_border_bottom_right_radius",
+        "value": ""
+      },
+      {
+        "id": 2379138,
+        "key": "af_addon_field_border_top_padding",
+        "value": ""
+      },
+      {
+        "id": 2379139,
+        "key": "af_addon_field_border_bottom_padding",
+        "value": ""
+      },
+      {
+        "id": 2379140,
+        "key": "af_addon_field_border_left_padding",
+        "value": ""
+      },
+      {
+        "id": 2379141,
+        "key": "af_addon_field_border_right_padding",
+        "value": ""
+      },
+      {
+        "id": 2379142,
+        "key": "af_addon_field_title_position",
+        "value": "left"
+      },
+      {
+        "id": 2379143,
+        "key": "af_addon_field_border_color",
+        "value": ""
+      },
+      {
+        "id": 2379144,
+        "key": "af_addon_title_position",
+        "value": "af_addon_title_inside_border"
+      },
+      {
+        "id": 2379145,
+        "key": "af_addon_tooltip_background_color",
+        "value": "#000000"
+      },
+      {
+        "id": 2379146,
+        "key": "af_addon_tooltip_text_color",
+        "value": ""
+      },
+      {
+        "id": 2379147,
+        "key": "_swatch_type",
+        "value": "default"
+      },
+      {
+        "id": 2379148,
+        "key": "_wc_cog_cost",
+        "value": ""
+      },
+      {
+        "id": 2379149,
+        "key": "_rank_math_gtin_code",
+        "value": ""
+      },
+      {
+        "id": 2379170,
+        "key": "promo_quantity_1",
+        "value": "48"
+      },
+      {
+        "id": 2379171,
+        "key": "_promo_quantity_1",
+        "value": "field_60ae5b9f51077"
+      },
+      {
+        "id": 2379172,
+        "key": "promo_price_1",
+        "value": "$101.23"
+      },
+      {
+        "id": 2379173,
+        "key": "_promo_price_1",
+        "value": "field_60ae5bd251078"
+      },
+      {
+        "id": 2379174,
+        "key": "promo_quantity_2",
+        "value": "72"
+      },
+      {
+        "id": 2379175,
+        "key": "_promo_quantity_2",
+        "value": "field_60ae5cc10d7bc"
+      },
+      {
+        "id": 2379176,
+        "key": "promo_price_2",
+        "value": "$96.99"
+      },
+      {
+        "id": 2379177,
+        "key": "_promo_price_2",
+        "value": "field_60ae5ccd0d7bd"
+      },
+      {
+        "id": 2379178,
+        "key": "promo_quantity_3",
+        "value": "144"
+      },
+      {
+        "id": 2379179,
+        "key": "_promo_quantity_3",
+        "value": "field_60ae5ce0ef7a8"
+      },
+      {
+        "id": 2379180,
+        "key": "promo_price_3",
+        "value": "$92.22"
+      },
+      {
+        "id": 2379181,
+        "key": "_promo_price_3",
+        "value": "field_60ae5cf6b1536"
+      },
+      {
+        "id": 2379182,
+        "key": "promo_quantity_4",
+        "value": "288"
+      },
+      {
+        "id": 2379183,
+        "key": "_promo_quantity_4",
+        "value": "field_60ae5d08b1537"
+      },
+      {
+        "id": 2379184,
+        "key": "promo_price_4",
+        "value": "$91.16"
+      },
+      {
+        "id": 2379185,
+        "key": "_promo_price_4",
+        "value": "field_60ae5d14b1538"
+      },
+      {
+        "id": 2379186,
+        "key": "promo_quantity_5",
+        "value": "500"
+      },
+      {
+        "id": 2379187,
+        "key": "_promo_quantity_5",
+        "value": "field_651b1a12479c4"
+      },
+      {
+        "id": 2379188,
+        "key": "promo_price_5",
+        "value": "$87.45"
+      },
+      {
+        "id": 2379189,
+        "key": "_promo_price_5",
+        "value": "field_651b1a23479c5"
+      },
+      {
+        "id": 2379190,
+        "key": "use_da_pricing",
+        "value": "0"
+      },
+      {
+        "id": 2379191,
+        "key": "_use_da_pricing",
+        "value": "field_657746d6dcd26"
+      },
+      {
+        "id": 2379192,
+        "key": "base_price",
+        "value": ""
+      },
+      {
+        "id": 2379193,
+        "key": "_base_price",
+        "value": "field_602ae21a019ce"
+      },
+      {
+        "id": 2379194,
+        "key": "markup_schedule",
+        "value": ""
+      },
+      {
+        "id": 2379195,
+        "key": "_markup_schedule",
+        "value": "field_602adf47018bc"
+      },
+      {
+        "id": 2379196,
+        "key": "da_markup_schedule",
+        "value": ""
+      },
+      {
+        "id": 2379197,
+        "key": "_da_markup_schedule",
+        "value": "field_6568ffb0e505e"
+      },
+      {
+        "id": 2379198,
+        "key": "rank_math_primary_product_cat",
+        "value": "290"
+      },
+      {
+        "id": 2379199,
+        "key": "rank_math_analytic_object_id",
+        "value": "12212"
+      }
+    ],
+    "stock_status": "instock",
+    "has_options": false,
+    "post_password": "",
+    "bundled_by": [],
+    "bundle_stock_status": "instock",
+    "bundle_stock_quantity": null,
+    "bundle_virtual": false,
+    "bundle_layout": "",
+    "bundle_add_to_cart_form_location": "",
+    "bundle_editable_in_cart": false,
+    "bundle_sold_individually_context": "",
+    "bundle_item_grouping": "",
+    "bundle_min_size": "",
+    "bundle_max_size": "",
+    "bundle_price": [],
+    "bundled_items": [],
+    "bundle_sell_ids": [],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://www.imagepointe.com/wp-json/wc/v3/products/20710"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.imagepointe.com/wp-json/wc/v3/products"
+        }
+      ]
+    }
+  }
+]
