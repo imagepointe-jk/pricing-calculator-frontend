@@ -259,7 +259,9 @@ export function QuoteInterface() {
           const parsedJson = parseWooCommerceProductData(json);
           setProductData(parsedJson);
           setProductDataLoading(false);
-          requestParentWindowAdaptToAppHeight();
+          setTimeout(() => {
+            requestParentWindowAdaptToAppHeight();
+          }, 100);
         } catch (error) {
           setProductDataLoading(false);
           console.error("Invalid product data response!", error);

@@ -201,6 +201,7 @@ export function requestParentWindowAppResize(newHeight: number) {
 }
 
 export function requestParentWindowAdaptToAppHeight() {
+  console.log("adapt");
   requestParentWindowAppResize(
     document.getElementById("pricing-calculator-container")?.scrollHeight || 900
   );
