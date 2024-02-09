@@ -24,12 +24,16 @@ export function parseWooCommerceProductData(json: any) {
 
   const pricingSchedule = parseWooCommercePricingSchedule(product);
   const sizeUpcharges = parseWooCommerceSizeUpcharges(product);
+  const colorsAvailable = product.attributes.find(
+    (att: any) => att.name === "Color"
+  )?.options;
 
   const productData: ProductSpecificData = {
     imageUrl,
     productName,
     pricingSchedule,
     sizeUpcharges,
+    colorsAvailable,
   };
 
   return productSpecificDataSchema.parse(productData);

@@ -6,16 +6,20 @@ import { QuantityFields } from "./QuantityFields";
 import { ScreenPrintOptions } from "./ScreenPrintOptions";
 import { EmbroideryOptions } from "./EmbroideryOptions";
 import { DyeSubOptions } from "./DyeSubOptions";
+import { MiscOptions } from "./MiscOptions";
 
 type InputTabsProps = {
   state: QuoteRequestState;
   setState: (newState: QuoteRequestState) => void;
-  anyError: boolean;
+  colorsAvailable: string[];
 };
 
-export function InputTabs({ state, setState, anyError }: InputTabsProps) {
+export function InputTabs({
+  state,
+  setState,
+  colorsAvailable,
+}: InputTabsProps) {
   const { designType } = state;
-  const optionsAvailable = designType !== "DTF" && !anyError;
 
   return (
     //? May need to provide Tabs with a reference to the iframe?
@@ -28,9 +32,7 @@ export function InputTabs({ state, setState, anyError }: InputTabsProps) {
       <TabList className={styles["tab-list"]}>
         <Tab className={styles["tab"]}>Decoration Type</Tab>
         <Tab className={styles["tab"]}>Quantities</Tab>
-        <Tab className={styles["tab"]} disabled={!optionsAvailable}>
-          Options
-        </Tab>
+        <Tab className={styles["tab"]}>Options</Tab>
       </TabList>
 
       <TabPanel className={styles["tab-panel"]}>
@@ -49,6 +51,7 @@ export function InputTabs({ state, setState, anyError }: InputTabsProps) {
         {designType === "Dye Sublimation" && (
           <DyeSubOptions state={state} setState={setState} />
         )}
+        <MiscOptions colorsAvailable={colorsAvailable} />
       </TabPanel>
     </Tabs>
   );

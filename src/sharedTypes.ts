@@ -88,6 +88,7 @@ export const productSpecificDataSchema = z.object({
   productName: z.string(),
   pricingSchedule: z.array(pricingScheduleEntrySchema),
   sizeUpcharges: z.array(sizeUpchargeSchema),
+  colorsAvailable: z.array(z.string()).optional(),
 });
 
 const sizeQuantitySchema = z.object({

@@ -339,7 +339,7 @@ export function QuoteInterface() {
               <InputTabs
                 state={requestState}
                 setState={updateState}
-                anyError={requestStateError !== null}
+                colorsAvailable={productData.colorsAvailable || []}
               />
               {requestStateError && <h3>{requestStateError}</h3>}
             </div>
