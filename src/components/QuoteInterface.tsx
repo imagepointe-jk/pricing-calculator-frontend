@@ -317,7 +317,7 @@ export function QuoteInterface() {
   // });
 
   return (
-    <div className={styles["main"]}>
+    <div className={styles["main"]} id="pricing-calculator-container">
       {!productData && productDataLoading && <LoadingIndicator />}
       {!productData && !productDataLoading && <ErrorMessage />}
       {productData && (
