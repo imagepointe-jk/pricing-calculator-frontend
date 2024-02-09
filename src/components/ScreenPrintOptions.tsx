@@ -37,6 +37,8 @@ export function ScreenPrintOptions({
       newState.screenPrintOptions.rightChestColors = value;
     if (location === "Right Sleeve")
       newState.screenPrintOptions.rightSleeveColors = value;
+    if (location === "Left Sleeve")
+      newState.screenPrintOptions.leftSleeveColors = value;
 
     setState(newState);
   }
